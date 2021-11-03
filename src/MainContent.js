@@ -14,7 +14,7 @@ class MainContent extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1 className="">
+        {/* <h1 className="">
           {this.state.pageTitle}
           <span className="badge bg-secondary ms-2">{this.state.customersCount}</span>
           <button 
@@ -23,7 +23,7 @@ class MainContent extends Component {
             onClick={this.onRefreshClick}>
             Refresh
           </button>
-        </h1>
+        </h1> */}
         <Customers />  
       </React.Fragment>  
     ) 
