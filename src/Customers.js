@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 
-class Customers extends Component {
+export default class Customers extends Component {
   constructor() {
     super();
     this.state = {
       customers: []
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     fetch('https://randomuser.me/api/?results=10')
-    .then(results => {
-      return results.json()
-    })
-    .then(data => {            
-      this.setState({customers: data.results.map(person => person)})
-      console.log(this.state.customers);
-    })
+      .then(results => results.json())
+      .then(data => this.setState({customers: data.results}))
   }
+
+  deleteCustomer = (person, index) => {
+    this.setState({ customers: this.state.customers.filter((item, i) => i !== index) })
+  }
+
   render() {
     return (     
       <div className="flex flex-col">
@@ -88,8 +88,10 @@ class Customers extends Component {
                         </span>
                       </td>                      
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="/#" className="text-indigo-600 hover:text-indigo-900">
-                          Edit
+                        <a href="/#" 
+                           className="text-indigo-600 hover:text-indigo-900" 
+                           onClick={() => {this.deleteCustomer(person, index)}}>
+                          Delete
                         </a>
                       </td>
                     </tr>
@@ -104,5 +106,3 @@ class Customers extends Component {
     )
   }
 }
-
-export default Customers;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Customers from "./Customers";
+//import Customers from "./Customers";
+import ShoppingCart from "./ShoppingCart";
 
 class MainContent extends Component {
 
@@ -24,16 +25,20 @@ class MainContent extends Component {
             Refresh
           </button>
         </h1> */}
-        <Customers />  
+        <div className="bg-gray-100 py-10">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <ShoppingCart />  
+          </div>
+        </div>        
       </React.Fragment>  
     ) 
   }
 
-  onRefreshClick = () => {
+  /* onRefreshClick = () => {
     this.setState({
       customersCount: this.state.customersCount + 1
     })
-  }
+  } */
   
 }
 
