@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import Customers from "./Customers";
-import ShoppingCart from "./ShoppingCart";
+//import ShoppingCart from "./ShoppingCart";
+import Login from "./Login";
 
 class MainContent extends Component {
 
@@ -27,7 +28,7 @@ class MainContent extends Component {
         </h1> */}
         <div className="bg-gray-100 py-10">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <ShoppingCart />  
+            <Login />  
           </div>
         </div>        
       </React.Fragment>  

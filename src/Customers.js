@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 
 export default class Customers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      customers: []
+      users: []
     }
   }
-  componentDidMount() {
-    fetch('https://randomuser.me/api/?results=10')
-      .then(results => results.json())
-      .then(data => this.setState({customers: data.results}))
-  }
-
-  deleteCustomer = (person, index) => {
-    this.setState({ customers: this.state.customers.filter((item, i) => i !== index) })
-  }
-
   render() {
     return (     
       <div className="flex flex-col">
@@ -56,32 +46,32 @@ export default class Customers extends Component {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {this.state.customers.map((person, index) => (                    
+                  {this.state.users.map((user, index) => (                    
                     <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
                             <img className="h-10 w-10 rounded-full" 
-                                 src={person.picture.thumbnail} 
-                                 alt={`${person.name.first} ${person.name.last}`} />
+                                 src={user.picture.thumbnail} 
+                                 alt={`${user.name.first} ${user.name.last}`} />
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
-                              {`${person.name.first} ${person.name.last}`}
+                              {`${user.name.first} ${user.name.last}`}
                             </div>
-                            <div className="text-sm text-gray-500">{person.email}</div>
+                            <div className="text-sm text-gray-500">{user.email}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {`${person.location.city}, ${person.location.country}`}
+                          {`${user.location.city}, ${user.location.country}`}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {`${person.location.street.number} ${person.location.street.name}`}
+                          {`${user.location.street.number} ${user.location.street.name}`}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.phone}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.phone}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                           Active
@@ -90,7 +80,7 @@ export default class Customers extends Component {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="/#" 
                            className="text-indigo-600 hover:text-indigo-900" 
-                           onClick={() => {this.deleteCustomer(person, index)}}>
+                           onClick={(e) => {this.deleteUser(user, index, e)}}>
                           Delete
                         </a>
                       </td>
@@ -104,5 +94,19 @@ export default class Customers extends Component {
         </div>
       </div>            
     )
+  }
+
+  componentDidMount() {
+    fetch('https://randomuser.me/api/?results=10')
+      .then(results => results.json())
+      .then(data => this.setState({users: data.results}))
+  }
+
+  deleteUser = (user, index, e) => {
+    e.preventDefault();
+    fetch(`https://fakestoreapi.com/users/${user.id}`,{method:"DELETE"})
+      .then(res => res.json())
+      .then(json => console.log(json))
+    this.setState({ users: this.state.users.filter((item, i) => i !== index) })
   }
 }
