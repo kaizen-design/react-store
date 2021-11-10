@@ -11,10 +11,10 @@ const user = {
 }
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
-  { name: 'Customers', href: '/customers', current: false },
-  { name: 'Login', href: '/login', current: false },
-  /* { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false }, */
+  { name: 'Customers', href: 'customers', current: false },
+  { name: 'Login', href: 'login', current: false },
+  { name: 'Products', href: 'products', current: false },
+  { name: 'Reports', href: '#', current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
