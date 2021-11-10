@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Outlet } from "react-router-dom";
 import ProductCard from "../ProductCard";
 
 export default class Products extends Component {
@@ -24,8 +23,7 @@ export default class Products extends Component {
               />
             )  
           })}        
-        </div>
-        <Outlet /> 
+        </div>        
       </div>  
     )
   }

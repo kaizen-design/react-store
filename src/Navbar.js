@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -14,7 +14,7 @@ const navigation = [
   { name: 'Customers', href: 'customers', current: false },
   { name: 'Login', href: 'login', current: false },
   { name: 'Products', href: 'products', current: false },
-  { name: 'Reports', href: '#', current: false },
+  /* { name: 'Reports', href: '#', current: false }, */
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -44,18 +44,18 @@ export default function Navbar() {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => (
-                      <Link 
+                      <NavLink 
                         key={item.name} 
                         to={item.href} 
-                        className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
+                        className={
+                          ({isActive}) => classNames(isActive
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'px-3 py-2 rounded-md text-sm font-medium'
+                          )}
                         aria-current={item.current ? 'page' : undefined}>
                         {item.name}
-                      </Link>                      
+                      </NavLink>                      
                     ))}
                   </div>
                 </div>

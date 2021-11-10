@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import {
   HashRouter,
+  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -19,9 +20,8 @@ render(
     <HashRouter>
       <Routes>
         <Route exact path="/" element={<App />}>
-          <Route path="products" element={<Products />}>
-            <Route path=":productSlug" element={<Product />} />
-          </Route>  
+          <Route path="products" element={<Products />} />            
+          <Route path="products/:product" element={<Product />} />
           <Route path="customers" element={<Customers />} />
           <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
