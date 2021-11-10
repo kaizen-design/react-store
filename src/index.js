@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -12,13 +12,15 @@ import Customers from './routes/Customers';
 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="customers" element={<Customers />} />
-        <Route path="login" element={<Login />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>, 
+  <React.StrictMode>
+    <HashRouter>
+      <Routes>
+        <Route exact path="/" element={<App />}>
+          <Route path="customers" element={<Customers />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+    </HashRouter>
+  </React.StrictMode>, 
   rootElement
 );
